@@ -1,5 +1,7 @@
-#! /bin/bash
+# Sometimes it can be important to shut down the xen-vms quickly and with only one command. this is what this script is for.
+#!/bin/bash
 
+# choose shutdown or destroy
 case $1 in
 	shutdown)
 	command=shutdown
@@ -14,7 +16,7 @@ case $1 in
 	;;
 esac
 
-domains=`xm list | cut -f1 -d" " | egrep -v "Name|Domain-0"`
+domains=`xl list | cut -f1 -d" " | egrep -v "Name|Domain-0"`
 
 for i in $domains ; do
 	xm $command $i
